@@ -1,13 +1,27 @@
+DROP DATABASE chat;
 CREATE DATABASE chat;
 
 USE chat;
 
+
 CREATE TABLE messages (
-  /* Describe your table here.*/
+  id int PRIMARY KEY AUTO_INCREMENT,
+  message text,
+  user_id int REFERENCES users(id),
+  room_id int REFERENCES rooms(id),
+  createdAt timestamp
 );
 
 /* Create other tables and define schemas for them here! */
+CREATE TABLE users (
+  id int PRIMARY KEY AUTO_INCREMENT,
+  name text
+);
 
+CREATE TABLE rooms (
+  id int PRIMARY KEY AUTO_INCREMENT,
+  name text
+);
 
 
 
