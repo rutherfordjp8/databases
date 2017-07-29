@@ -4,7 +4,7 @@
  */
 
 var Sequelize = require('sequelize');
-var db = new Sequelize('chatter', 'root', '');
+var db = new Sequelize('chat', 'root', 'plantlife');
 /* TODO this constructor takes the database name, username, then password.
  * Modify the arguments if you need to */
 
@@ -14,11 +14,11 @@ var User = db.define('User', {
   username: Sequelize.STRING
 });
 
-var Message = db.define('Message', {
-  userid: Sequelize.INTEGER,
-  text: Sequelize.STRING,
-  roomname: Sequelize.STRING
-});
+// var Message = db.define('Message', {
+//   userid: Sequelize.INTEGER,
+//   text: Sequelize.STRING,
+//   roomname: Sequelize.STRING
+// });
 
 /* Sequelize comes with built in support for promises
  * making it easy to chain asynchronous operations together */
@@ -29,9 +29,12 @@ User.sync()
   })
   .then(function() {
     // Retrieve objects from the database:
-    return User.findAll({ where: {username: 'Jean Valjean'} });
+    var result = User.findAll({ where: {username: 'Jean Valjean'} });
+    console.log('RESULT OF SEQUELIZE FIND ALL: ', result);
+    return result;
   })
   .then(function(users) {
+    console.log('Promise of users fulfilled: ', users);
     users.forEach(function(user) {
       console.log(user.username + ' exists');
     });
