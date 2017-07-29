@@ -71,8 +71,10 @@ var app = {
         app.messages = data;
 
         // Get the last message
-        var mostRecentMessage = data[data.length - 1];
+        var mostRecentMessage = data[0];
 
+        console.log('MOST RECENT ID ', mostRecentMessage.id);
+        console.log('LAST MESSAGE REC ', app.lastMessageId);
         // Only bother updating the DOM if we have a new message
         if (mostRecentMessage.id !== app.lastMessageId) {
           // Update the UI with the fetched rooms

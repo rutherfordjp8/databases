@@ -7,7 +7,7 @@ USE chat;
 CREATE TABLE messages (
   id int PRIMARY KEY AUTO_INCREMENT,
   text text,
-  username text,
+  user_id int REFERENCES users(id),
   roomname text,
   createdAt timestamp
 );
@@ -15,7 +15,7 @@ CREATE TABLE messages (
 /* Create other tables and define schemas for them here! */
 CREATE TABLE users (
   id int PRIMARY KEY AUTO_INCREMENT,
-  username text
+  username VARCHAR(255) UNIQUE
 );
 
 -- CREATE TABLE rooms (
