@@ -14,11 +14,11 @@ var User = db.define('User', {
   username: Sequelize.STRING
 });
 
-// var Message = db.define('Message', {
-//   userid: Sequelize.INTEGER,
-//   text: Sequelize.STRING,
-//   roomname: Sequelize.STRING
-// });
+var Message = db.define('Message', {
+  userid: Sequelize.INTEGER,
+  text: Sequelize.STRING,
+  roomname: Sequelize.STRING
+});
 
 /* Sequelize comes with built in support for promises
  * making it easy to chain asynchronous operations together */
