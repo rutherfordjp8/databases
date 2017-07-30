@@ -1,5 +1,31 @@
 var db = require('../db');
 
+/* Sequelize comes with built in support for promises
+ * making it easy to chain asynchronous operations together */
+User.sync()
+  .then(function() {
+    // Now instantiate an object and save it:
+    return User.create({username: 'Jean Valjean'});
+  })
+  .then(function() {
+    // Retrieve objects from the database:
+    var result = User.findAll({ where: {username: 'Jean Valjean'} });
+    console.log('RESULT OF SEQUELIZE FIND ALL: ', result);
+    return result;
+  })
+  .then(function(users) {
+    console.log('Promise of users fulfilled: ', users);
+    users.forEach(function(user) {
+      console.log(user.username + ' exists');
+    });
+    db.close();
+  })
+  .catch(function(err) {
+    // Handle any error in the chain
+    console.error(err);
+    db.close();
+  });
+
 module.exports = {
   messages: {
     get: function (callback, queryArgs) {
